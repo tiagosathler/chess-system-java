@@ -26,6 +26,7 @@ public class Knight extends ChessPiece {
 		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
 
 		Position p = new Position(0, 0);
+		
 		/* r
 		 * ^
 		 * 

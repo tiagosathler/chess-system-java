@@ -34,7 +34,7 @@ public class ChessMatch {
 		initialSetup();
 	}
 
-	public ChessPiece enPassantVulnerable() {
+	public ChessPiece getEnPassantVulnerable() {
 		return enPassantVulnerable;
 	}
 
@@ -75,6 +75,7 @@ public class ChessMatch {
 		return board.piece(position).possibleMoves();
 	}
 
+	// core
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
@@ -84,6 +85,7 @@ public class ChessMatch {
 
 		Piece capturedPiece = makeMove(source, target);
 
+		// test if check yourself
 		if (testCheck(currentPlayer)) {
 			undoMove(source, target, capturedPiece);
 			throw new ChessException("You can't put yourself in check!");
@@ -91,7 +93,7 @@ public class ChessMatch {
 
 		ChessPiece movedPiece = ((ChessPiece) board.piece(target));
 
-		// special move promotion
+		// special move: promotion
 		promoted = null;
 		if (movedPiece instanceof Pawn) {
 			if ((movedPiece.getColor() == Color.WHITE && target.getRow() == 0)
@@ -101,17 +103,16 @@ public class ChessMatch {
 			}
 		}
 
+		// check and checkmate tests
 		check = testCheck(opponent(currentPlayer));
-
 		if (check) {
 			checkMate = testCheckMate(opponent(currentPlayer));
 		}
-
 		if (!checkMate) {
 			nextTurn();
 		}
 
-		// special move en passant
+		// special move: en passant
 		if (movedPiece instanceof Pawn && Math.abs(source.getRow() - target.getRow()) == 2) {
 			enPassantVulnerable = movedPiece;
 		} else {
@@ -126,7 +127,7 @@ public class ChessMatch {
 			throw new IllegalStateException("There is no piece to be promoted");
 		}
 		if (!type.equals("B") && !type.equals("N") && !type.equals("R") && !type.equals("Q")) {
-			// queen is the default promoted piece
+			// queen will be the default promoted piece
 			return promoted;
 		}
 
@@ -182,7 +183,7 @@ public class ChessMatch {
 			rook.increaseMoveCount();
 		}
 
-		// special move en passant
+		// special move: en passant
 		if (p instanceof Pawn) {
 			if (source.getColumn() != target.getColumn() && capturedPiece == null) {
 				Position pawnPosition;

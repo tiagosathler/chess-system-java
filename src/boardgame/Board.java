@@ -44,17 +44,17 @@ public class Board {
 		pieces[position.getRow()][position.getColumn()] = piece;
 		piece.position = position;
 	}
-	
+
 	public Piece removePiece(Position position) {
 		Piece foundPiece = piece(position);
-		
+
 		if (foundPiece == null) {
 			return null;
 		}
-		
+
 		foundPiece.position = null;
 		pieces[position.getRow()][position.getColumn()] = null;
-		
+
 		return foundPiece;
 	}
 
