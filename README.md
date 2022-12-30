@@ -1,5 +1,7 @@
 # Chess System Java
 
+:chess_pawn: __Jogo de Xadrez__ :chess_pawn:
+
 ## Introdução
 
 Projeto assistido e desenvolvido durante o Curso de [Java Completo](https://www.udemy.com/course/java-curso-completo/) da plataforma Udemy através do [![Linkedin](https://i.stack.imgur.com/gVE0j.png) Prof. Dr. Nelio Alves](https://br.linkedin.com/in/nelio-alves). O repositório das minhas atividades no curso podem ser acessados [aqui](https://github.com/tiagosathler/udemy-java-complete-course).
